@@ -45,7 +45,9 @@ def main():
         print("1. Add Employee")
         print("2. Add Manager")
         print("3. Show Employees")
-        print("4. Quit")
+        print("4. Fire Employee")
+        print("5. Fire Manager")
+        print("6. Quit")
         choice = input("Enter your choice num: ")
 
         if choice == "1":
@@ -79,6 +81,30 @@ def main():
             print(tabulate(data, headers=headers, tablefmt="grid"))
 
         elif choice == "4":
+            print("Select employee to fire:")
+            for i, employee in enumerate(employees):
+                print(f"{i+1}. {employee.first_name} {employee.last_name}")
+            employee_index = int(input("Enter the employee number to fire: ")) - 1
+            if 0 <= employee_index < len(employees):
+                employee = employees.pop(employee_index)
+                employee.fire()
+                print(f"{employee.first_name} {employee.last_name} fired successfully.")
+            else:
+                print("Invalid employee number.")
+
+        elif choice == "5":
+            print("Select manager to fire:")
+            for i, manager in enumerate(managers):
+                print(f"{i+1}. {manager.first_name} {manager.last_name}")
+            manager_index = int(input("Enter the manager number to fire: ")) - 1
+            if 0 <= manager_index < len(managers):
+                manager = managers.pop(manager_index)
+                manager.fire()
+                print(f"{manager.first_name} {manager.last_name} fired successfully.")
+            else:
+                print("Invalid manager number.")
+
+        elif choice == "6":
             break
 
         else:
